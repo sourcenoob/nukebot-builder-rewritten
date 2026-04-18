@@ -4,7 +4,6 @@ import asyncio
 import datetime
 import aiofile
 import os
-from discord.ext import commands
 from discord.ext.commands import Bot
 from discord import Permissions
 from aiofile import async_open
@@ -13,7 +12,7 @@ from colorama import Fore, init
 init()
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
 bot.activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
 
