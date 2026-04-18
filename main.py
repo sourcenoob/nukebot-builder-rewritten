@@ -78,12 +78,7 @@ def select_token(tokens):
 async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
     await bot.change_presence(status=discord.Status.online, activity=activity)
-    print(Fore.GREEN + f"[+] Бот запущен как {bot.user}")
-    print(Fore.WHITE + "Все команды:")
-    print("!nuke - автоматический краш сервера")
-    print("!admin - выдача прав администратора")
-    print("!ban_all - банит всех пользователей")
-    print("!spam - спамит во всех каналах")
+    log('+', f"Бот включен как {bot.user}")
 
 
 @bot.command()
