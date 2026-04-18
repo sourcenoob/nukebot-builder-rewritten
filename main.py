@@ -15,6 +15,7 @@ init()
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
+bot.activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
 
 CRASH_CHANNEL_NAME = "☠-crashed-by-icsu-{}"
 CRASH_SERVER_NAME = ">>CRSHHD BY ICSU>>"
@@ -79,7 +80,6 @@ def select_token(tokens):
 
 @bot.event
 async def on_ready():
-    activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
     await bot.change_presence(status=discord.Status.online, activity=activity)
     log('+', f"Бот включен как {bot.user}")
 
