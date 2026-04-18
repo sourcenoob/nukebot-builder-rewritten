@@ -52,6 +52,13 @@ def log(operators, message):
     output = f"[{operators}] {Fore.RESET + message}"
     print(color+output)
 
+def load_tokens():
+    if not os.path.exists("token.txt"):
+        print("Файл token.txt не найден.")
+        return []
+    with open("token.txt", "r") as f:
+        return [line.strip() for line in f.readlines() if line.strip()]
+
 @bot.event
 async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
