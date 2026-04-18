@@ -201,14 +201,7 @@ async def nuke(ctx):
 async def on_guild_channel_create(channel):
     if channel.name.startswith("☠-crashed-by-icsu-"):
         webhook = await channel.create_webhook(name="ICSU", avatar=await channel.guild.icon.read())
-        for i in range(30):
-            try:
-                async with async_open("text.txt","r", encoding="utf-8") as raid_txt:
-                    await webhook.send(await raid_txt.read())
-            except:
-                pass
-        else:
-            return
+        asyncio.gather(spm_hook(webhook))
 
 @bot.command()
 async def admin(ctx):
