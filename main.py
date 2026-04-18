@@ -12,10 +12,6 @@ from colorama import Fore, init
 
 init()
 
-with open("token.txt", "r", encoding="utf-8") as f:
-    TOKEN = f.read().strip()
-    print(Fore.GREEN + "[+] - Токены прочитаны. Не забудьте включить все интенты для бота на сайте Discord Developer Portal")
-
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
