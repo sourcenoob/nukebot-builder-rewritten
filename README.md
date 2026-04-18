@@ -12,3 +12,4 @@
 
 Ссылкa на старую версию - https://github.com/xnnder/nukebot-builder
 
+<img width="1045" height="268" alt="image" src="https://github.com/user-attachments/assets/40269fae-2e90-411e-948c-59af760d3265" />
