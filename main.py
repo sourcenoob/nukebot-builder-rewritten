@@ -59,6 +59,21 @@ def load_tokens():
     with open("token.txt", "r") as f:
         return [line.strip() for line in f.readlines() if line.strip()]
 
+def select_token(tokens):
+    print("Выберите токен:")
+    for idx, token in enumerate(tokens):
+        print(f"[{idx + 1}] {token[:25]}...")
+    try:
+        choice = int(
+            input("\nВведите номер токена для запуска:").strip()
+        )
+        os.system("cls")
+        draw_menu()
+        return tokens[choice - 1]
+    except:
+        print("Неверный ввод.")
+        return None
+
 @bot.event
 async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
