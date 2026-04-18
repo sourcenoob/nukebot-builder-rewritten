@@ -38,6 +38,19 @@ def draw_menu():
 !nuke - крашит сервер              !admin - выдача прав администратора
 !spam - спам во всех каналах       !allban - банит всех пользователей
     ''', Fore.RESET)
+    
+def log(operators, message):
+
+    match operators:
+        case '+':
+            color = Fore.GREEN
+        case '~':
+            color = Fore.YELLOW
+        case '-':
+            color = Fore.RED
+
+    output = f"[{operators}] {Fore.RESET + message}"
+    print(color+output)
 
 @bot.event
 async def on_ready():
