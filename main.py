@@ -21,7 +21,8 @@ CRASH_SERVER_NAME = ">>CRSHHD BY ICSU>>"
 CRASH_DESCRIPTION = (
     "Сервер захвачен группировкой СЕООИ, переходите на наш сервер >>> https://discord.gg/jPzvYYjRSd"
 )
-ICON_PATH = "icon.png"
+
+pfp = open('icon.png', 'rb')
 
 def draw_menu():
     print(Fore.MAGENTA + r'''
