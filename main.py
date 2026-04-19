@@ -79,7 +79,6 @@ def select_token(tokens):
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.online, activity=activity)
     log('+', f"Бот включен как {bot.user}")
 
 
