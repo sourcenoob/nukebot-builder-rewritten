@@ -110,9 +110,10 @@ async def spm_hook(webhook):
 
 async def create_hook(ctx):
     for chan in ctx.guild.text_channels:
-        webhook = await chan.create_webhook(name='ICSU')
-        async with async_open(ICON_PATH,'rb') as pfp:
-            await webhook.edit(avatar=await pfp.read())
+        webhook = await chan.create_webhook(
+            name='ICSU',
+            avatar = pfp.read()
+        )
 
         asyncio.gather(spm_hook(webhook))
 
