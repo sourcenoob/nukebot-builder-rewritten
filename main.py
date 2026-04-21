@@ -88,7 +88,7 @@ async def allban(ctx):
     await ctx.message.delete()
     log('~', "Выполняется бан участников...")
 
-    async for member in ctx.guild.members:
+    for member in ctx.guild.members:
         try:
             await member.ban(reason="CRSHHD BY ICSU")
             log('+', f"Забанен: {member}")
