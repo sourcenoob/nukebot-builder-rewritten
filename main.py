@@ -12,7 +12,7 @@ from discord.ext.commands import Bot
 init()
 
 
-bot = Bot(command_prefix="!", help_command = None,,intents = discord.Intents.all())
+bot = Bot(command_prefix="!", help_command = None,intents = discord.Intents.all())
 bot.activity = discord.Activity(type=discord.ActivityType.watching, name="https://discord.gg/Cju3qReNWy")
 
 CRASH_CHANNEL_NAME = "☠-crashed-by-icsu-{}"
